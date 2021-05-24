@@ -56,12 +56,12 @@ app.use(async (ctx, next) => {
     return await next();
   }
   console.log("received hooks to rebuild");
-  // const exec = require("child_process").exec;
+  const exec = require("child_process").exec;
 
-  // exec('sudo git pull --rebase', function(error, stdout, stderr) {
-  //   if (error) throw error;
-  //   if (stderr) throw stderr;
-  // });
+  exec('git pull --rebase', function(error, stdout, stderr) {
+    if (error) throw error;
+    if (stderr) throw stderr;
+  });
 
   ctx.status = 200;
   ctx.body = "ok";
