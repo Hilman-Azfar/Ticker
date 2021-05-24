@@ -50,6 +50,23 @@ app.use(async (ctx, next) => {
   ctx.set('X-Response-Time', `${ms}ms`);
 });
 
+// github hook
+app.use(async (ctx, next) => {
+  if (ctx.path !== "/webhook/push") {
+    return await next();
+  }
+  console.log("received hooks to rebuild");
+  // const exec = require("child_process").exec;
+
+  // exec('sudo git pull --rebase', function(error, stdout, stderr) {
+  //   if (error) throw error;
+  //   if (stderr) throw stderr;
+  // });
+
+  ctx.status = 200;
+  ctx.body = "ok";
+});
+
 // sse
 
 app.use(async (ctx, next) => {
