@@ -59,6 +59,8 @@ app.use(async (ctx, next) => {
   const exec = require("child_process").exec;
 
   exec('git pull --rebase', function(error, stdout, stderr) {
+    console.log("git pullinggggggg!!!!!!");
+    
     if (error) throw error;
     if (stderr) throw stderr;
   });
