@@ -3,6 +3,7 @@ const { PassThrough } = require("stream");
 const app = new Koa();
 const EventEmitter = require("events");
 const { Transform } = require("stream");
+const os = require("os");
 
 class SSEStream extends Transform {
   constructor() {
@@ -21,7 +22,14 @@ const events = new EventEmitter();
 events.setMaxListeners(0);
 
 const interval = setInterval(() => {
-  events.emit("data", { timestamp: new Date() });
+  events.emit("data", {
+    hostname: os.hostname(),
+    type: os.type(),
+    platform: os.platform(),
+    arch: os.arch(),
+    release: os.release(),
+    time: new Date()
+  });
 }, 1000);
 
 
