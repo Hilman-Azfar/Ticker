@@ -75,7 +75,7 @@ app.use(async (ctx, next) => {
   ctx.body = stream;
 
   const listener = (data) => {
-    stream.write(`data: ${data}\n\n`);
+    stream.write(data);
   }
 
   events.on("data", listener);
