@@ -51,6 +51,7 @@ app.use(async (ctx, next) => {
 });
 
 // github hook
+
 app.use(async (ctx, next) => {
   if (ctx.path !== "/webhook/push") {
     return await next();
@@ -104,7 +105,6 @@ app.use(async (ctx, next) => {
     console.log("sse close");
     
   });
-
 });
 
 app.use(ctx => {
