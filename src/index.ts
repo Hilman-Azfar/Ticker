@@ -22,13 +22,11 @@ const events = new EventEmitter();
 events.setMaxListeners(0);
 
 const interval = setInterval(() => {
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
   events.emit("data", {
-    hostname: os.hostname(),
-    type: os.type(),
-    platform: os.platform(),
-    arch: os.arch(),
-    release: os.release(),
-    time: new Date()
+    y: getRandomInt(11)
   });
 }, 1000);
 
@@ -106,6 +104,11 @@ app.use(async (ctx, next) => {
     console.log("sse close");
     
   });
+
+  stream.on("error", (err) => {
+    events.off("data", listener);
+    console.error(err);
+  })
 });
 
 app.use(ctx => {
