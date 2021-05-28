@@ -8,4 +8,4 @@ COPY ./ .
 
 RUN npm ci
 
-CMD bash -c "npm start"
+CMD bash -c "tsnode index.ts"
