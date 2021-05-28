@@ -1,0 +1,14 @@
+version: '3'
+services:
+    ticker:
+        container_name: ticker
+    build:
+        context: ./
+    logging:
+        driver: : local
+        options: : 
+            max-size: 10m
+    environment:
+        - DEPLOY_ENV=local
+    ports:
+        5000:5000
