@@ -1,4 +1,6 @@
-FROM node:14-apline
+FROM node:14-slim
+
+EXPOSE 5000
 
 WORKDIR /app
 
