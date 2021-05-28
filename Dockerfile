@@ -1,11 +1,11 @@
 FROM node:14-slim
 
-EXPOSE 5000
-
 WORKDIR /app
 
-COPY ./ .
+COPY ./ /app
 
 RUN npm ci
 
 CMD npm run dev
+
+EXPOSE 5000
